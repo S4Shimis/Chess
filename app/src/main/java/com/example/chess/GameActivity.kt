@@ -111,7 +111,7 @@ class GameActivity : AppCompatActivity() {
         val G1 = findViewById<TextView>(R.id.textView64)
         val H1 = findViewById<TextView>(R.id.textView65)
 
-        val board_array = arrayOf (
+        val board_array = arrayOf(
                 arrayOf(A8, B8, C8, D8, E8, F8, G8, H8),
                 arrayOf(A7, B7, C7, D7, E7, F7, G7, H7),
                 arrayOf(A6, B6, C6, D6, E6, F6, G6, H6),
@@ -121,6 +121,7 @@ class GameActivity : AppCompatActivity() {
                 arrayOf(A2, B2, C2, D2, E2, F2, G2, H2),
                 arrayOf(A1, B1, C1, D1, E1, F1, G1, H1)
         )
+
 
         fun start_position() {
 
@@ -160,53 +161,47 @@ class GameActivity : AppCompatActivity() {
                     else if ((i == 7) && (j == 4)) board_array[i][j].text = "♔"
 
                     //Empty space
-                    else board_array[i][j].text=""
+                    else board_array[i][j].text = ""
 
                 }
             }
         }
 
-        fun piece_detection(cTV: TextView):Boolean {
+        fun piece_detection(cTV: TextView): Boolean {
             //♔ ♕ ♖ ♗ ♘ ♙   White
             //♚ ♛ ♜ ♝ ♞ ♟︎Black
             //cTV.text = "1"
-            if (((cTV.text == "♙") || (cTV.text == "♘") ||(cTV.text == "♗") ||(cTV.text == "♖") ||(cTV.text == "♕") ||(cTV.text == "♔")) && white_to_move) {
+            if (((cTV.text == "♙") || (cTV.text == "♘") || (cTV.text == "♗") || (cTV.text == "♖") || (cTV.text == "♕") || (cTV.text == "♔")) && white_to_move) {
                 return true
-            }
-            else if (((cTV.text == "♟") ||(cTV.text == "♞") ||(cTV.text == "♝") ||(cTV.text == "♜") ||(cTV.text == "♛") ||(cTV.text == "♚")) && !white_to_move) {
+            } else if (((cTV.text == "♟") || (cTV.text == "♞") || (cTV.text == "♝") || (cTV.text == "♜") || (cTV.text == "♛") || (cTV.text == "♚")) && !white_to_move) {
                 return true
-            }
-            else return false
+            } else return false
         }
 
         fun pawn_move(i1: Int, j1: Int, i2: Int, j2: Int): Boolean {
             if (board_array[i1][j1].text == "♙") {
                 if (j1 - j2 > 1 || j2 - j1 > 1) return false
-                if (i2 == 4 && i1 == 6 && board_array[i2][j2].text=="" && board_array[i2+1][j2].text=="") return true
-                if (i1 - i2 == 1 && board_array[i2][j2].text=="") return true
-                if (i1 - i2 == 1 && j1 - j2 == 1 && (board_array[i2][j2].text== "♟" || board_array[i2][j2].text== "♞" || board_array[i2][j2].text== "♝" || board_array[i2][j2].text== "♜" || board_array[i2][j2].text== "♛" || board_array[i2][j2].text== "♚")) return true
-                return (i1 - i2 == 1 && j2 - j1 == 1 && (board_array[i2][j2].text== "♟" || board_array[i2][j2].text== "♞" || board_array[i2][j2].text== "♝" || board_array[i2][j2].text== "♜" || board_array[i2][j2].text== "♛" || board_array[i2][j2].text== "♚"))
-            }
-            else if (board_array[i1][j1].text == "♟") {
+                if (i2 == 4 && i1 == 6 && board_array[i2][j2].text == "" && board_array[i2 + 1][j2].text == "") return true
+                if (i1 - i2 == 1 && board_array[i2][j2].text == "") return true
+                if (i1 - i2 == 1 && j1 - j2 == 1 && (board_array[i2][j2].text == "♟" || board_array[i2][j2].text == "♞" || board_array[i2][j2].text == "♝" || board_array[i2][j2].text == "♜" || board_array[i2][j2].text == "♛" || board_array[i2][j2].text == "♚")) return true
+                return (i1 - i2 == 1 && j2 - j1 == 1 && (board_array[i2][j2].text == "♟" || board_array[i2][j2].text == "♞" || board_array[i2][j2].text == "♝" || board_array[i2][j2].text == "♜" || board_array[i2][j2].text == "♛" || board_array[i2][j2].text == "♚"))
+            } else if (board_array[i1][j1].text == "♟") {
                 if (j1 - j2 > 1 || j2 - j1 > 1) return false
-                if (i2 == 3 && i1 == 1 && board_array[i2][j2].text=="" && board_array[i2-1][j2].text=="") return true
-                if (i2 - i1 == 1 && board_array[i2][j2].text=="") return true
-                if (i2 - i1 == 1 && j1 - j2 == 1 && (board_array[i2][j2].text== "♙" || board_array[i2][j2].text== "♘" || board_array[i2][j2].text== "♗" || board_array[i2][j2].text== "♖" || board_array[i2][j2].text== "♕" || board_array[i2][j2].text== "♔")) return true
-                return i2 - i1 == 1 && j2 - j1 == 1 && (board_array[i2][j2].text== "♙" || board_array[i2][j2].text== "♘" || board_array[i2][j2].text== "♗" || board_array[i2][j2].text== "♖" || board_array[i2][j2].text== "♕" || board_array[i2][j2].text== "♔")
-            }
-            else return false
+                if (i2 == 3 && i1 == 1 && board_array[i2][j2].text == "" && board_array[i2 - 1][j2].text == "") return true
+                if (i2 - i1 == 1 && board_array[i2][j2].text == "") return true
+                if (i2 - i1 == 1 && j1 - j2 == 1 && (board_array[i2][j2].text == "♙" || board_array[i2][j2].text == "♘" || board_array[i2][j2].text == "♗" || board_array[i2][j2].text == "♖" || board_array[i2][j2].text == "♕" || board_array[i2][j2].text == "♔")) return true
+                return i2 - i1 == 1 && j2 - j1 == 1 && (board_array[i2][j2].text == "♙" || board_array[i2][j2].text == "♘" || board_array[i2][j2].text == "♗" || board_array[i2][j2].text == "♖" || board_array[i2][j2].text == "♕" || board_array[i2][j2].text == "♔")
+            } else return false
         }
 
         fun horse_move(i1: Int, j1: Int, i2: Int, j2: Int): Boolean {
             if (board_array[i1][j1].text == "♘") {
                 if ((((i2 == i1 + 2 || i2 == i1 - 2) && (j2 == j1 + 1 || j2 == j1 - 1)) || ((i2 == i1 + 1 || i2 == i1 - 1) && (j2 == j1 + 2 || j2 == j1 - 2))) && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
                 else return false
-            }
-            else if (board_array[i1][j1].text == "♞") {
+            } else if (board_array[i1][j1].text == "♞") {
                 if ((((i2 == i1 + 2 || i2 == i1 - 2) && (j2 == j1 + 1 || j2 == j1 - 1)) || ((i2 == i1 + 1 || i2 == i1 - 1) && (j2 == j1 + 2 || j2 == j1 - 2))) && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
                 else return false
-            }
-            else return false
+            } else return false
         }
 
         fun bishop_move(i1: Int, j1: Int, i2: Int, j2: Int): Boolean {
@@ -216,56 +211,48 @@ class GameActivity : AppCompatActivity() {
             if (board_array[i1][j1].text == "♗" || board_array[i1][j1].text == "♕") {
                 if (iTMP < 0 && jTMP < 0) {
                     for (i in 1..7) {
-                        if (i1-i == i2 && j1-i == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
-                        if (board_array[i1-i][j1-i].text != "") return false
+                        if (i1 - i == i2 && j1 - i == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
+                        if (board_array[i1 - i][j1 - i].text != "") return false
                     }
-                }
-                else if (iTMP < 0 && jTMP > 0) {
+                } else if (iTMP < 0 && jTMP > 0) {
                     for (i in 1..7) {
-                        if (i1-i == i2 && j1+i == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
-                        if (board_array[i1-i][j1+i].text != "") return false
+                        if (i1 - i == i2 && j1 + i == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
+                        if (board_array[i1 - i][j1 + i].text != "") return false
                     }
-                }
-                else if (iTMP > 0 && jTMP < 0) {
+                } else if (iTMP > 0 && jTMP < 0) {
                     for (i in 1..7) {
-                        if (i1+i == i2 && j1-i == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
-                        if (board_array[i1+i][j1-i].text != "") return false
+                        if (i1 + i == i2 && j1 - i == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
+                        if (board_array[i1 + i][j1 - i].text != "") return false
                     }
-                }
-                else if (iTMP > 0 && jTMP > 0) {
+                } else if (iTMP > 0 && jTMP > 0) {
                     for (i in 1..7) {
-                        if (i1+i == i2 && j1+i == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
-                        if (board_array[i1+i][j1+i].text != "") return false
+                        if (i1 + i == i2 && j1 + i == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
+                        if (board_array[i1 + i][j1 + i].text != "") return false
                     }
                 }
-            }
-            else if (board_array[i1][j1].text == "♝" || board_array[i1][j1].text == "♛") {
+            } else if (board_array[i1][j1].text == "♝" || board_array[i1][j1].text == "♛") {
                 if (iTMP < 0 && jTMP < 0) {
                     for (i in 1..7) {
-                        if (i1-i == i2 && j1-i == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
-                        if (board_array[i1-i][j1-i].text != "") return false
+                        if (i1 - i == i2 && j1 - i == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
+                        if (board_array[i1 - i][j1 - i].text != "") return false
                     }
-                }
-                else if (iTMP < 0 && jTMP > 0) {
+                } else if (iTMP < 0 && jTMP > 0) {
                     for (i in 1..7) {
-                        if (i1-i == i2 && j1+i == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
-                        if (board_array[i1-i][j1+i].text != "") return false
+                        if (i1 - i == i2 && j1 + i == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
+                        if (board_array[i1 - i][j1 + i].text != "") return false
                     }
-                }
-                else if (iTMP > 0 && jTMP < 0) {
+                } else if (iTMP > 0 && jTMP < 0) {
                     for (i in 1..7) {
-                        if (i1+i == i2 && j1-i == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
-                        if (board_array[i1+i][j1-i].text != "") return false
+                        if (i1 + i == i2 && j1 - i == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
+                        if (board_array[i1 + i][j1 - i].text != "") return false
                     }
-                }
-                else if (iTMP > 0 && jTMP > 0) {
+                } else if (iTMP > 0 && jTMP > 0) {
                     for (i in 1..7) {
-                        if (i1+i == i2 && j1+i == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
-                        if (board_array[i1+i][j1+i].text != "") return false
+                        if (i1 + i == i2 && j1 + i == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
+                        if (board_array[i1 + i][j1 + i].text != "") return false
                     }
                 }
-            }
-            else return false
+            } else return false
             return false
         }
 
@@ -276,57 +263,49 @@ class GameActivity : AppCompatActivity() {
             if (board_array[i1][j1].text == "♖" || board_array[i1][j1].text == "♕") {
                 if (iTMP < 0 && jTMP == 0) {
                     for (i in 1..7) {
-                        if (i1-i == i2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
-                        if (board_array[i1-i][j2].text != "") return false
+                        if (i1 - i == i2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
+                        if (board_array[i1 - i][j2].text != "") return false
                     }
-                }
-                else if (iTMP == 0 && jTMP > 0) {
+                } else if (iTMP == 0 && jTMP > 0) {
                     for (j in 1..7) {
-                        if (j1+j == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
-                        if (board_array[i2][j1+j].text != "") return false
+                        if (j1 + j == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
+                        if (board_array[i2][j1 + j].text != "") return false
                     }
-                }
-                else if (iTMP > 0 && jTMP == 0) {
+                } else if (iTMP > 0 && jTMP == 0) {
                     for (i in 1..7) {
-                        if (i1+i == i2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
-                        if (board_array[i1+i][j2].text != "") return false
+                        if (i1 + i == i2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
+                        if (board_array[i1 + i][j2].text != "") return false
                     }
-                }
-                else if (iTMP == 0 && jTMP < 0) {
+                } else if (iTMP == 0 && jTMP < 0) {
                     for (j in 1..7) {
-                        if (j1-j == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
-                        if (board_array[i2][j1-j].text != "") return false
+                        if (j1 - j == j2 && (board_array[i2][j2].text != "♙" && board_array[i2][j2].text != "♘" && board_array[i2][j2].text != "♗" && board_array[i2][j2].text != "♖" && board_array[i2][j2].text != "♕" && board_array[i2][j2].text != "♔")) return true
+                        if (board_array[i2][j1 - j].text != "") return false
                     }
                 }
-            }
-            else if (board_array[i1][j1].text == "♜" || board_array[i1][j1].text == "♛"){
+            } else if (board_array[i1][j1].text == "♜" || board_array[i1][j1].text == "♛") {
                 if (iTMP < 0 && jTMP == 0) {
                     for (i in 1..7) {
-                        if (i1-i == i2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
-                        if (board_array[i1-i][j2].text != "") return false
+                        if (i1 - i == i2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
+                        if (board_array[i1 - i][j2].text != "") return false
                     }
-                }
-                else if (iTMP == 0 && jTMP > 0) {
+                } else if (iTMP == 0 && jTMP > 0) {
                     for (j in 1..7) {
-                        if (j1+j == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
-                        if (board_array[i2][j2+j].text != "") return false
+                        if (j1 + j == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
+                        if (board_array[i2][j2 + j].text != "") return false
                     }
-                }
-                else if (iTMP > 0 && jTMP == 0) {
+                } else if (iTMP > 0 && jTMP == 0) {
                     for (i in 1..7) {
-                        if (i1+i == i2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
-                        if (board_array[i1+i][j2].text != "") return false
+                        if (i1 + i == i2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
+                        if (board_array[i1 + i][j2].text != "") return false
                     }
-                }
-                else if (iTMP == 0 && jTMP < 0) {
+                } else if (iTMP == 0 && jTMP < 0) {
                     for (j in 1..7) {
-                        if (j1-j == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
-                        if (board_array[i2][j2-j].text != "") return false
+                        if (j1 - j == j2 && (board_array[i2][j2].text != "♟" && board_array[i2][j2].text != "♞" && board_array[i2][j2].text != "♝" && board_array[i2][j2].text != "♜" && board_array[i2][j2].text != "♛" && board_array[i2][j2].text != "♚")) return true
+                        if (board_array[i2][j2 - j].text != "") return false
                     }
                 }
 
-            }
-            else return false
+            } else return false
             return false
         }
 
@@ -339,72 +318,57 @@ class GameActivity : AppCompatActivity() {
 
         fun king_move(i1: Int, j1: Int, i2: Int, j2: Int): Boolean {
             if (i2 - i1 > 1 || i2 - i1 < -1 || j2 - j1 > 1 || j2 - j1 < -1) {
-                if (board_array[i1][j1].text=="♔") {
-                    if (!white_king_moved && board_array[i2][j2] == G1 && F1.text=="" && G1.text=="" && H1.text=="♖") {
+                if (board_array[i1][j1].text == "♔") {
+                    if (!white_king_moved && board_array[i2][j2] == G1 && F1.text == "" && G1.text == "" && H1.text == "♖") {
                         white_king_moved = true
                         H1.text = ""
                         F1.text = "♖"
                         return true
-                    }
-                    else if (!white_king_moved && board_array[i2][j2] == C1 && B1.text=="" && C1.text=="" && D1.text=="" && A1.text=="♖") {
+                    } else if (!white_king_moved && board_array[i2][j2] == C1 && B1.text == "" && C1.text == "" && D1.text == "" && A1.text == "♖") {
                         white_king_moved = true
                         A1.text = ""
                         D1.text = "♖"
                         return true
-                    }
-                    else return false
-                }
-                else if (board_array[i1][j1].text=="♚") {
-                    if (!black_king_moved && board_array[i2][j2] == G8 && F8.text=="" && G8.text=="" && H8.text=="♖") {
+                    } else return false
+                } else if (board_array[i1][j1].text == "♚") {
+                    if (!black_king_moved && board_array[i2][j2] == G8 && F8.text == "" && G8.text == "" && H8.text == "♜") {
                         black_king_moved = true
                         H8.text = ""
-                        F8.text = "♖"
+                        F8.text = "♜"
                         return true
-                    }
-                    else if (!black_king_moved && board_array[i2][j2] == C8 && B8.text=="" && C8.text=="" && D8.text=="" && A8.text=="♖") {
+                    } else if (!black_king_moved && board_array[i2][j2] == C8 && B8.text == "" && C8.text == "" && D8.text == "" && A8.text == "♜") {
                         black_king_moved = true
                         A8.text = ""
-                        D8.text = "♖"
+                        D8.text = "♜"
                         return true
-                    }
-                    else return false
-                }
-
-                else return false
+                    } else return false
+                } else return false
             }
             if (board_array[i1][j1].text == "♔") {
                 white_king_moved = true
-                if (board_array[i2][j2].text== "♙" || board_array[i2][j2].text== "♘" || board_array[i2][j2].text== "♗" || board_array[i2][j2].text== "♖" || board_array[i2][j2].text== "♕" || board_array[i2][j2].text== "♔") return false
+                if (board_array[i2][j2].text == "♙" || board_array[i2][j2].text == "♘" || board_array[i2][j2].text == "♗" || board_array[i2][j2].text == "♖" || board_array[i2][j2].text == "♕" || board_array[i2][j2].text == "♔") return false
                 else return true
-            }
-            else if (board_array[i1][j1].text == "♚") {
+            } else if (board_array[i1][j1].text == "♚") {
                 black_king_moved = true
-                if (board_array[i2][j2].text== "♟" || board_array[i2][j2].text== "♞" || board_array[i2][j2].text== "♝" || board_array[i2][j2].text== "♜" || board_array[i2][j2].text== "♛" || board_array[i2][j2].text== "♚") return false
+                if (board_array[i2][j2].text == "♟" || board_array[i2][j2].text == "♞" || board_array[i2][j2].text == "♝" || board_array[i2][j2].text == "♜" || board_array[i2][j2].text == "♛" || board_array[i2][j2].text == "♚") return false
                 else return true
-            }
-            else return false
+            } else return false
         }
 
         fun move_is_legal(i1: Int, j1: Int, i2: Int, j2: Int): Boolean {
             if (board_array[i1][j1].text == "♙" || board_array[i1][j1].text == "♟") {
                 return pawn_move(i1, j1, i2, j2)
-            }
-            else if (board_array[i1][j1].text == "♘" || board_array[i1][j1].text == "♞") {
+            } else if (board_array[i1][j1].text == "♘" || board_array[i1][j1].text == "♞") {
                 return horse_move(i1, j1, i2, j2)
-            }
-            else if (board_array[i1][j1].text == "♗" || board_array[i1][j1].text == "♝") {
+            } else if (board_array[i1][j1].text == "♗" || board_array[i1][j1].text == "♝") {
                 return bishop_move(i1, j1, i2, j2)
-            }
-            else if (board_array[i1][j1].text == "♖" || board_array[i1][j1].text == "♜") {
+            } else if (board_array[i1][j1].text == "♖" || board_array[i1][j1].text == "♜") {
                 return rook_move(i1, j1, i2, j2)
-            }
-            else if (board_array[i1][j1].text == "♕" || board_array[i1][j1].text == "♛") {
+            } else if (board_array[i1][j1].text == "♕" || board_array[i1][j1].text == "♛") {
                 return queen_move(i1, j1, i2, j2)
-            }
-            else if (board_array[i1][j1].text == "♔" || board_array[i1][j1].text == "♚") {
+            } else if (board_array[i1][j1].text == "♔" || board_array[i1][j1].text == "♚") {
                 return king_move(i1, j1, i2, j2)
-            }
-            else return false
+            } else return false
         }
 
         fun promote(i: Int, j: Int) {
@@ -428,8 +392,7 @@ class GameActivity : AppCompatActivity() {
                     if (promote_piece == "Bishop") {
                         if (board_array[i][j].text == "♙") board_array[i][j].text = "♗"
                         if (board_array[i][j].text == "♟") board_array[i][j].text = "♝"
-                    }
-                    else {
+                    } else {
                         if (board_array[i][j].text == "♙") board_array[i][j].text = "♘"
                         if (board_array[i][j].text == "♟") board_array[i][j].text = "♞"
                     }
@@ -441,7 +404,7 @@ class GameActivity : AppCompatActivity() {
         fun white_win() {
 
             var b = true
-            for(i in 0..7) {
+            for (i in 0..7) {
                 for (j in 0..7) {
                     if (board_array[i][j].text == "♚") b = false
                 }
@@ -449,7 +412,7 @@ class GameActivity : AppCompatActivity() {
 
             if (b) {
                 win.text = "Game over. " + white_name + " is victorious!"
-                for(i in 0..7) {
+                for (i in 0..7) {
                     for (j in 0..7) {
                         board_array[i][j].isClickable = false
                     }
@@ -460,9 +423,10 @@ class GameActivity : AppCompatActivity() {
             else player_turn.setBackgroundColor(Color.BLACK)
 
         }
+
         fun black_win() {
             var b = true
-            for(i in 0..7) {
+            for (i in 0..7) {
                 for (j in 0..7) {
                     if (board_array[i][j].text == "♔") b = false
                 }
@@ -470,7 +434,7 @@ class GameActivity : AppCompatActivity() {
 
             if (b) {
                 win.text = "Game over. " + black_name + " is victorious!"
-                for(i in 0..7) {
+                for (i in 0..7) {
                     for (j in 0..7) {
                         board_array[i][j].isClickable = false
                     }
@@ -481,7 +445,44 @@ class GameActivity : AppCompatActivity() {
             else player_turn.setBackgroundColor(Color.BLACK)
 
         }
+
+        fun listener(x: Int, y: Int) {
+
+            if (piece_detection(board_array[x][y])) {
+                if (move_piece) {
+                    info = A8.text as String
+                    iRow = x
+                    jColoumn = y
+                    move_piece = false
+                } else {
+                    if (move_is_legal(iRow, jColoumn, x, y)) {
+                        //disposal_bar(board_array[0][0].text as String)
+                        //white_disposal.text = board_array[0][0].text
+                        A8.text = info
+                        board_array[iRow][jColoumn].text = ""
+                        white_to_move = !white_to_move
+                    }
+                    move_piece = true
+                }
+            } else {
+                if (!move_piece) {
+                    if (move_is_legal(iRow, jColoumn, x, y)) {
+                        //disposal_bar(board_array[0][0].text as String)
+                        A8.text = info
+                        board_array[iRow][jColoumn].text = ""
+                        white_to_move = !white_to_move
+                        if (A8.text == "♙" || A8.text == "♟") promote(x, y)
+                    }
+                    move_piece = true
+                }
+            }
+            white_win()
+            black_win()
+
+        }
+
 /*
+
         fun white_sort(s :String) :String{
             var tmp = 'a'
             val ch = s.toCharArray()
@@ -587,41 +588,11 @@ class GameActivity : AppCompatActivity() {
         }
 
         go_back_to_menu.setOnClickListener {
-           finish()
+            finish()
         }
 
         board_array[0][0].setOnClickListener {
-            if (piece_detection(board_array[0][0])) {
-                if (move_piece) {
-                    info = A8.text as String
-                    iRow = 0
-                    jColoumn = 0
-                    move_piece = false
-                } else {
-                    if (move_is_legal(iRow, jColoumn, 0, 0)) {
-                        //disposal_bar(board_array[0][0].text as String)
-                        //white_disposal.text = board_array[0][0].text
-                        A8.text = info
-                        board_array[iRow][jColoumn].text=""
-                        white_to_move = !white_to_move
-                    }
-                    move_piece = true
-                }
-            }
-            else {
-                if (!move_piece) {
-                    if (move_is_legal(iRow, jColoumn, 0, 0)) {
-                        //disposal_bar(board_array[0][0].text as String)
-                        A8.text = info
-                        board_array[iRow][jColoumn].text=""
-                        white_to_move = !white_to_move
-                        if (A8.text == "♙" || A8.text == "♟") promote(0,0)
-                    }
-                    move_piece = true
-                }
-            }
-            white_win()
-            black_win()
+            listener(0, 0)
         }
 
         board_array[1][0].setOnClickListener {
@@ -634,17 +605,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 1, 0)) {
                         A7.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 1, 0)) {
                         A7.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -664,17 +634,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 2, 0)) {
                         A6.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 2, 0)) {
                         A6.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -694,17 +663,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 3, 0)) {
                         A5.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 3, 0)) {
                         A5.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -724,17 +692,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 4, 0)) {
                         A4.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 4, 0)) {
                         A4.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -754,17 +721,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 5, 0)) {
                         A3.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 5, 0)) {
                         A3.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -784,17 +750,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 6, 0)) {
                         A2.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 6, 0)) {
                         A2.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -814,19 +779,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 7, 0)) {
                         A1.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 7, 0)) {
                         A1.text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (A1.text == "♙" || A1.text == "♟") promote(7,0)
+                        if (A1.text == "♙" || A1.text == "♟") promote(7, 0)
                     }
                     move_piece = true
                 }
@@ -846,19 +810,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 0, 1)) {
                         board_array[0][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 0, 1)) {
                         board_array[0][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[0][1].text == "♙" || board_array[0][1].text == "♟") promote(0,1)
+                        if (board_array[0][1].text == "♙" || board_array[0][1].text == "♟") promote(0, 1)
                     }
                     move_piece = true
                 }
@@ -877,17 +840,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 1, 1)) {
                         board_array[1][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 1, 1)) {
                         board_array[1][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -907,17 +869,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 2, 1)) {
                         board_array[2][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 2, 1)) {
                         board_array[2][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -937,17 +898,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 3, 1)) {
                         board_array[3][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 3, 1)) {
                         board_array[3][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -967,17 +927,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 4, 1)) {
                         board_array[4][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 4, 1)) {
                         board_array[4][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -997,17 +956,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 5, 1)) {
                         board_array[5][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 5, 1)) {
                         board_array[5][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1027,17 +985,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 6, 1)) {
                         board_array[6][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 6, 1)) {
                         board_array[6][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1057,19 +1014,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 7, 1)) {
                         board_array[7][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 7, 1)) {
                         board_array[7][1].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[7][1].text == "♙" || board_array[7][1].text == "♟") promote(7,1)
+                        if (board_array[7][1].text == "♙" || board_array[7][1].text == "♟") promote(7, 1)
                     }
                     move_piece = true
                 }
@@ -1089,19 +1045,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 0, 2)) {
                         board_array[0][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 0, 2)) {
                         board_array[0][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[0][2].text == "♙" || board_array[0][2].text == "♟") promote(0,2)
+                        if (board_array[0][2].text == "♙" || board_array[0][2].text == "♟") promote(0, 2)
                     }
                     move_piece = true
                 }
@@ -1120,17 +1075,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 1, 2)) {
                         board_array[1][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 1, 2)) {
                         board_array[1][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1150,17 +1104,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 2, 2)) {
                         board_array[2][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 2, 2)) {
                         board_array[2][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1180,17 +1133,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 3, 2)) {
                         board_array[3][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 3, 2)) {
                         board_array[3][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1210,17 +1162,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 4, 2)) {
                         board_array[4][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 4, 2)) {
                         board_array[4][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1240,17 +1191,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 5, 2)) {
                         board_array[5][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 5, 2)) {
                         board_array[5][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1270,16 +1220,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 6, 2)) {
                         board_array[6][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 6, 2)) {
                         board_array[6][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1299,19 +1249,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 7, 2)) {
                         board_array[7][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 7, 2)) {
                         board_array[7][2].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[7][2].text == "♙" || board_array[7][2].text == "♟") promote(7,2)
+                        if (board_array[7][2].text == "♙" || board_array[7][2].text == "♟") promote(7, 2)
                     }
                     move_piece = true
                 }
@@ -1331,19 +1280,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 0, 3)) {
                         board_array[0][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 0, 3)) {
                         board_array[0][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[0][3].text == "♙" || board_array[0][3].text == "♟") promote(0,3)
+                        if (board_array[0][3].text == "♙" || board_array[0][3].text == "♟") promote(0, 3)
                     }
                     move_piece = true
                 }
@@ -1362,17 +1310,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 1, 3)) {
                         board_array[1][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 1, 3)) {
                         board_array[1][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1392,17 +1339,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 2, 3)) {
                         board_array[2][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 2, 3)) {
                         board_array[2][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1422,17 +1368,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 3, 3)) {
                         board_array[3][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 3, 3)) {
                         board_array[3][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1452,17 +1397,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 4, 3)) {
                         board_array[4][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 4, 3)) {
                         board_array[4][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1482,17 +1426,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 5, 3)) {
                         board_array[5][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 5, 3)) {
                         board_array[5][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1512,17 +1455,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 6, 3)) {
                         board_array[6][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 6, 3)) {
                         board_array[6][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1542,19 +1484,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 7, 3)) {
                         board_array[7][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 7, 3)) {
                         board_array[7][3].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[7][3].text == "♙" || board_array[7][3].text == "♟") promote(7,3)
+                        if (board_array[7][3].text == "♙" || board_array[7][3].text == "♟") promote(7, 3)
                     }
                     move_piece = true
                 }
@@ -1574,19 +1515,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 0, 4)) {
                         board_array[0][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 0, 4)) {
                         board_array[0][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[0][4].text == "♙" || board_array[0][4].text == "♟") promote(0,4)
+                        if (board_array[0][4].text == "♙" || board_array[0][4].text == "♟") promote(0, 4)
                     }
                     move_piece = true
                 }
@@ -1605,17 +1545,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 1, 4)) {
                         board_array[1][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 1, 4)) {
                         board_array[1][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1635,17 +1574,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 2, 4)) {
                         board_array[2][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 2, 4)) {
                         board_array[2][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1665,17 +1603,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 3, 4)) {
                         board_array[3][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 3, 4)) {
                         board_array[3][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1695,17 +1632,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 4, 4)) {
                         board_array[4][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 4, 4)) {
                         board_array[4][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1725,17 +1661,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 5, 4)) {
                         board_array[5][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 5, 4)) {
                         board_array[5][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1755,17 +1690,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 6, 4)) {
                         board_array[6][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 6, 4)) {
                         board_array[6][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1785,19 +1719,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 7, 4)) {
                         board_array[7][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 7, 4)) {
                         board_array[7][4].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[7][4].text == "♙" || board_array[7][4].text == "♟") promote(7,4)
+                        if (board_array[7][4].text == "♙" || board_array[7][4].text == "♟") promote(7, 4)
                     }
                     move_piece = true
                 }
@@ -1817,19 +1750,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 0, 5)) {
                         board_array[0][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 0, 5)) {
                         board_array[0][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[0][5].text == "♙" || board_array[0][5].text == "♟") promote(0,5)
+                        if (board_array[0][5].text == "♙" || board_array[0][5].text == "♟") promote(0, 5)
                     }
                     move_piece = true
                 }
@@ -1848,17 +1780,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 1, 5)) {
                         board_array[1][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 1, 5)) {
                         board_array[1][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1878,17 +1809,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 2, 5)) {
                         board_array[2][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 2, 5)) {
                         board_array[2][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1908,17 +1838,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 3, 5)) {
                         board_array[3][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 3, 5)) {
                         board_array[3][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1938,17 +1867,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 4, 5)) {
                         board_array[4][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 4, 5)) {
                         board_array[4][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1968,17 +1896,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 5, 5)) {
                         board_array[5][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 5, 5)) {
                         board_array[5][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -1998,17 +1925,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 6, 5)) {
                         board_array[6][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 6, 5)) {
                         board_array[6][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2028,19 +1954,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 7, 5)) {
                         board_array[7][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 7, 5)) {
                         board_array[7][5].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[7][5].text == "♙" || board_array[7][5].text == "♟") promote(7,5)
+                        if (board_array[7][5].text == "♙" || board_array[7][5].text == "♟") promote(7, 5)
                     }
                     move_piece = true
                 }
@@ -2060,19 +1985,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 0, 6)) {
                         board_array[0][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 0, 6)) {
                         board_array[0][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[0][6].text == "♙" || board_array[0][6].text == "♟") promote(0,6)
+                        if (board_array[0][6].text == "♙" || board_array[0][6].text == "♟") promote(0, 6)
                     }
                     move_piece = true
                 }
@@ -2091,17 +2015,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 1, 6)) {
                         board_array[1][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 1, 6)) {
                         board_array[1][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2121,17 +2044,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 2, 6)) {
                         board_array[2][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 2, 6)) {
                         board_array[2][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2151,17 +2073,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 3, 6)) {
                         board_array[3][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 3, 6)) {
                         board_array[3][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2181,17 +2102,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 4, 6)) {
                         board_array[4][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 4, 6)) {
                         board_array[4][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2211,17 +2131,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 5, 6)) {
                         board_array[5][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 5, 6)) {
                         board_array[5][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2241,17 +2160,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 6, 6)) {
                         board_array[6][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 6, 6)) {
                         board_array[6][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2271,19 +2189,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 7, 6)) {
                         board_array[7][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 7, 6)) {
                         board_array[7][6].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[7][6].text == "♙" || board_array[7][6].text == "♟") promote(7,6)
+                        if (board_array[7][6].text == "♙" || board_array[7][6].text == "♟") promote(7, 6)
                     }
                     move_piece = true
                 }
@@ -2306,19 +2223,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 0, 7)) {
                         board_array[0][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 0, 7)) {
                         board_array[0][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[0][7].text == "♙" || board_array[0][7].text == "♟") promote(0,7)
+                        if (board_array[0][7].text == "♙" || board_array[0][7].text == "♟") promote(0, 7)
                     }
                     move_piece = true
                 }
@@ -2337,17 +2253,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 1, 7)) {
                         board_array[1][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 1, 7)) {
                         board_array[1][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2367,17 +2282,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 2, 7)) {
                         board_array[2][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 2, 7)) {
                         board_array[2][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2397,17 +2311,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 3, 7)) {
                         board_array[3][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 3, 7)) {
                         board_array[3][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2427,17 +2340,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 4, 7)) {
                         board_array[4][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 4, 7)) {
                         board_array[4][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2457,17 +2369,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 5, 7)) {
                         board_array[5][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 5, 7)) {
                         board_array[5][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2487,17 +2398,16 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 6, 7)) {
                         board_array[6][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 6, 7)) {
                         board_array[6][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
@@ -2517,19 +2427,18 @@ class GameActivity : AppCompatActivity() {
                 } else {
                     if (move_is_legal(iRow, jColoumn, 7, 7)) {
                         board_array[7][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
                     }
                     move_piece = true
                 }
-            }
-            else {
+            } else {
                 if (!move_piece) {
                     if (move_is_legal(iRow, jColoumn, 7, 7)) {
                         board_array[7][7].text = info
-                        board_array[iRow][jColoumn].text=""
+                        board_array[iRow][jColoumn].text = ""
                         white_to_move = !white_to_move
-                        if (board_array[7][7].text == "♙" || board_array[7][7].text == "♟") promote(7,7)
+                        if (board_array[7][7].text == "♙" || board_array[7][7].text == "♟") promote(7, 7)
                     }
                     move_piece = true
                 }
